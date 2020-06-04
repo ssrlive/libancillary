@@ -1,15 +1,15 @@
 
 cmake_minimum_required(VERSION 3.4.1)
-project(libancillary C)
+project(ancillary C)
 
 set(CMAKE_C_STANDARD 11)
 
-set(LIB_ANCILLARY_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "libancillary library path" FORCE)
+set(LIB_ANCILLARY_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "ancillary library path" FORCE)
 
 include_directories(.)
 
 add_library(
-        libancillary
+        ancillary
         STATIC
         ancillary.h
         fd_recv.c
@@ -25,7 +25,7 @@ if (libancillary_build_test)
     )
     target_link_libraries(
             test_exe
-            libancillary
+            ancillary
     )
     add_executable(
             evclient
@@ -33,7 +33,7 @@ if (libancillary_build_test)
     )
     target_link_libraries(
             evclient
-            libancillary
+            ancillary
     )
     add_executable(
             evserver
@@ -41,6 +41,6 @@ if (libancillary_build_test)
     )
     target_link_libraries(
             evserver
-            libancillary
+            ancillary
     )
 endif (libancillary_build_test)
