@@ -4,6 +4,8 @@ project(libancillary C)
 
 set(CMAKE_C_STANDARD 11)
 
+set(LIB_ANCILLARY_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "libancillary library path" FORCE)
+
 include_directories(.)
 
 add_library(
