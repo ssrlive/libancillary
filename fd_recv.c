@@ -65,13 +65,13 @@ ancil_recv_fds_with_buffer(int sock, int *fds, unsigned n_fds, void *buffer)
     cmsg->cmsg_len = msghdr.msg_controllen;
     cmsg->cmsg_level = SOL_SOCKET;
     cmsg->cmsg_type = SCM_RIGHTS;
-    for(i = 0; i < n_fds; i++)
-	((int *)CMSG_DATA(cmsg))[i] = -1;
-    
+    for(i = 0; (unsigned)i < n_fds; i++)
+        ((int *)CMSG_DATA(cmsg))[i] = -1;
+
     if(recvmsg(sock, &msghdr, 0) < 0)
-	return(-1);
-    for(i = 0; i < n_fds; i++)
-	fds[i] = ((int *)CMSG_DATA(cmsg))[i];
+        return(-1);
+    for(i = 0; (unsigned)i < n_fds; i++)
+        fds[i] = ((int *)CMSG_DATA(cmsg))[i];
     n_fds = (cmsg->cmsg_len - sizeof(struct cmsghdr)) / sizeof(int);
     return(n_fds);
 }
