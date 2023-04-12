@@ -93,6 +93,6 @@ ancil_recv_fd(int sock, int *fd)
 {
     ANCIL_FD_BUFFER(1) buffer;
 
-    return(ancil_recv_fds_with_buffer(sock, fd, 1, &buffer) == 1 ? 0 : -1);
+    return(ancil_recv_fds_with_buffer(sock, fd, 1, &buffer) != 0 ? 0 : -1);
 }
 #endif /* SPARE_RECV_FD */
